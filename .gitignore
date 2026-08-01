@@ -1,0 +1,7 @@
+data/
+build/
+schema/
+.venv/
+__pycache__/
+*.pyc
+uv.lock

@@ -1,0 +1,139 @@
+@charset "UTF-8";
+
+/*
+ * CC-CEDICT for Dictionary.app
+ *
+ * Tone coloring is shipped commented out at the bottom of this file: enabling
+ * it is a CSS edit plus a rebuild of the bundle, not a regeneration of the XML.
+ */
+
+d\:entry {
+	font-family: -apple-system, "Helvetica Neue", sans-serif;
+	line-height: 1.45;
+}
+
+/* ---------------------------------------------------------------- headword */
+
+h1 {
+	font-size: 1.5em;
+	font-weight: 600;
+	margin: 0 0 0.35em 0;
+}
+
+.hw-trad {
+	font-family: "Songti SC", "Times New Roman", serif;
+}
+
+.hw-simp {
+	font-family: "Songti SC", "Times New Roman", serif;
+	color: #666;
+	font-weight: 400;
+}
+
+.hw-simp:before {
+	content: "· ";
+	color: #bbb;
+}
+
+/* ---------------------------------------------------------------- readings */
+
+.reading {
+	margin: 0 0 0.9em 0;
+}
+
+.reading + .reading {
+	border-top: 1px solid #eee;
+	padding-top: 0.6em;
+}
+
+/* The space between syllables is part of the markup — each tone span carries
+ * its own trailing space, because the DDK strips whitespace-only text nodes.
+ * Do not "tidy" it into letter-spacing or margins here. */
+.pinyin {
+	font-size: 1.05em;
+	color: #1a6ba8;
+}
+
+/* ------------------------------------------------------------------ senses */
+
+ol.senses {
+	margin: 0.35em 0 0 0;
+	padding-left: 1.5em;
+}
+
+ol.senses li {
+	margin: 0.15em 0;
+}
+
+/* A single sense needs no "1." in front of it. */
+ol.senses li:only-child {
+	list-style: none;
+	margin-left: -1.1em;
+}
+
+/* -------------------------------------------------------------- classifier */
+
+.classifier {
+	margin-top: 0.3em;
+	font-size: 0.95em;
+}
+
+.classifier .label {
+	color: #888;
+	font-variant: small-caps;
+	font-size: 0.85em;
+	letter-spacing: 0.04em;
+}
+
+/* ------------------------------------------------------- cross-references */
+
+a.xref {
+	text-decoration: none;
+}
+
+.xref-pinyin {
+	color: #1a6ba8;
+	font-size: 0.9em;
+}
+
+/* ------------------------------------------------------------ front matter */
+
+.front-matter h1 {
+	font-size: 1.4em;
+}
+
+.front-matter h2 {
+	font-size: 1.05em;
+	margin: 1em 0 0.3em 0;
+}
+
+.front-matter p,
+.front-matter li {
+	font-size: 0.95em;
+}
+
+/* ------------------------------------------------------------ dark mode */
+
+@media (prefers-color-scheme: dark) {
+	.hw-simp { color: #9a9a9a; }
+	.hw-simp:before { color: #666; }
+	.pinyin, .xref-pinyin { color: #6cb6f0; }
+	.reading + .reading { border-top-color: #333; }
+	.classifier .label { color: #999; }
+}
+
+/* ------------------------------------------------------------ tone colors
+ *
+ * Uncomment to color pinyin by tone (tone0 is a non-syllabic token such as the
+ * "11" of 11區 or the "CP" of 磕CP). Rebuild with `make` to apply. Every span
+ * but the last also holds the space that follows it, so the color extends over
+ * that space — invisible for a foreground color, but not for a background or
+ * an underline.
+ *
+ * .tone1 { color: #d33682; }
+ * .tone2 { color: #859900; }
+ * .tone3 { color: #268bd2; }
+ * .tone4 { color: #dc322f; }
+ * .tone5 { color: #93a1a1; }
+ * .tone0 { color: inherit; }
+ */
